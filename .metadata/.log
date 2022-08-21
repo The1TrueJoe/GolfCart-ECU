@@ -1,0 +1,16 @@
+!SESSION 2022-08-21 03:31:42.373 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/joeytelaak/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/joeytelaak/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-08-21 03:32:06.533
+!MESSAGE Log4j initialized with config file /Users/joeytelaak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Projects/AutoCart Rev2/Code/GolfCart-ECU/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-08-21 03:32:10.786
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-08-21 03:42:41.021
+!MESSAGE Indexed 'ECU' (24 sources, 85 headers) in 8.13 sec: 7,669 declarations; 51,712 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0034%)
