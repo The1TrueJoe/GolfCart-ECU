@@ -73,19 +73,20 @@ void MX_ADC1_Init(void)
     Error_Handler();
   }
 
-  /** Configure Regular Channel
+  
+  /** Configure Regular Channel 
   */
-  sConfig.Channel = ADC_CHANNEL_6;
-  sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-  sConfig.SingleDiff = ADC_SINGLE_ENDED;
-  sConfig.OffsetNumber = ADC_OFFSET_NONE;
-  sConfig.Offset = 0;
-  sConfig.OffsetSignedSaturation = DISABLE;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  // sConfig.Channel = ADC_CHANNEL_6;
+  // sConfig.Rank = ADC_REGULAR_RANK_1;
+  // sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  // sConfig.SingleDiff = ADC_SINGLE_ENDED;
+  // sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  // sConfig.Offset = 0;
+  // sConfig.OffsetSignedSaturation = DISABLE;
+  // if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  // {
+  //   Error_Handler();
+  // }
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
@@ -129,17 +130,17 @@ void MX_ADC2_Init(void)
 
   /** Configure Regular Channel
   */
-  sConfig.Channel = ADC_CHANNEL_6;
-  sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-  sConfig.SingleDiff = ADC_SINGLE_ENDED;
-  sConfig.OffsetNumber = ADC_OFFSET_NONE;
-  sConfig.Offset = 0;
-  sConfig.OffsetSignedSaturation = DISABLE;
-  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  // sConfig.Channel = ADC_CHANNEL_6;
+  // sConfig.Rank = ADC_REGULAR_RANK_1;
+  // sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  // sConfig.SingleDiff = ADC_SINGLE_ENDED;
+  // sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  // sConfig.Offset = 0;
+  // sConfig.OffsetSignedSaturation = DISABLE;
+  // if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
+  // {
+  //   Error_Handler();
+  // }
   /* USER CODE BEGIN ADC2_Init 2 */
 
   /* USER CODE END ADC2_Init 2 */
@@ -186,17 +187,17 @@ void MX_ADC3_Init(void)
 
   /** Configure Regular Channel
   */
-  sConfig.Channel = ADC_CHANNEL_1;
-  sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC3_SAMPLETIME_2CYCLES_5;
-  sConfig.SingleDiff = ADC_SINGLE_ENDED;
-  sConfig.OffsetNumber = ADC_OFFSET_NONE;
-  sConfig.Offset = 0;
-  sConfig.OffsetSign = ADC3_OFFSET_SIGN_NEGATIVE;
-  if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  // sConfig.Channel = ADC_CHANNEL_1;
+  // sConfig.Rank = ADC_REGULAR_RANK_1;
+  // sConfig.SamplingTime = ADC3_SAMPLETIME_2CYCLES_5;
+  // sConfig.SingleDiff = ADC_SINGLE_ENDED;
+  // sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  // sConfig.Offset = 0;
+  // sConfig.OffsetSign = ADC3_OFFSET_SIGN_NEGATIVE;
+  // if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
+  // {
+  //   Error_Handler();
+  // }
   /* USER CODE BEGIN ADC3_Init 2 */
 
   /* USER CODE END ADC3_Init 2 */
@@ -339,5 +340,61 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 }
 
 /* USER CODE BEGIN 1 */
+void ADC1_SELECT_CH2() {
+  ADC_ChannelConfTypeDef sConfig = {0};
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+  */
+  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_28CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
+void ADC1_SELECT_CH6() {
+  ADC_ChannelConfTypeDef sConfig = {0};
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+  */
+  sConfig.Channel = ADC_CHANNEL_6;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_84CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
+void ADC2_SELECT_CH2() {
+  ADC_ChannelConfTypeDef sConfig = {0};
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+  */
+  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_28CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
+void ADC2_SELECT_CH6() {
+  ADC_ChannelConfTypeDef sConfig = {0};
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+  */
+  sConfig.Channel = ADC_CHANNEL_6;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_84CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
 
 /* USER CODE END 1 */
