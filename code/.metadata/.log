@@ -1,0 +1,29 @@
+!SESSION 2022-11-04 17:53:17.473 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/joeytelaak/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/joeytelaak/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-11-04 17:54:08.124
+!MESSAGE Log4j initialized with config file /Users/joeytelaak/Documents/Projects/AutoCart Rev2/Drive Computer/Components/GolfCart-ECU/code/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-11-04 17:54:18.441
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-11-04 18:51:35.189
+!MESSAGE Indexed 'ECU' (212 sources, 308 headers) in 14 sec: 35,904 declarations; 264,221 references; 0 unresolved inclusions; 39 syntax errors; 78 unresolved names (0.026%)
+!SESSION 2022-11-04 18:55:55.792 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/joeytelaak/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/joeytelaak/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-11-04 18:56:11.823
+!MESSAGE Log4j initialized with config file /Users/joeytelaak/Documents/Projects/AutoCart Rev2/Drive Computer/Components/GolfCart-ECU/code/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-11-04 18:56:18.228
+!MESSAGE Started RMI Server, listening on port 41337
