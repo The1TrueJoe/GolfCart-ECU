@@ -36,6 +36,11 @@
 #define BRAKE_ACTUATOR_ADC_CHANNEL 6
 #define SELECT_BRAKE_ACTUATOR_CHANNEL ADC2_SELECT_CH6
 
+// Motor Controller
+#define BRAKE_ACTUATOR_MOTOR_CONTROLLER_TIMER &htim3
+#define BRAKE_ACTUATOR_MOTOR_CONTROLLER_L TIM_CHANNEL_4
+#define BRAKE_ACTUATOR_MOTOR_CONTROLLER_R TIM_CHANNEL_3
+
 // Executor handle
 rclc_executor_t brake_executor;
 
@@ -55,8 +60,6 @@ rcl_publisher_t brake_act_position_pub;
 rcl_subscription_t brake_actuator_l_sub;
 rcl_subscription_t brake_actuator_r_sub;
 
-rcl_subscription_t brake_light_sub;
-
 rcl_subscription_t emergency_brake_sub;
 
 // Initalizes the brake node
@@ -67,14 +70,6 @@ void brake_timer_callback();
 
 // Spin function
 void brake_spin();
-
-//------- Relay Control -------//
-
-// Set Brake Light
-void set_brake_light(bool state);
-
-// Brake Light Callback
-void brake_light_callback(const void * msg);
 
 //------- Brake Pedal -------//
 
@@ -96,7 +91,7 @@ void brake_actuator_l_callback(const void * msgin);
 void brake_actuator_r_callback(const void * msgin);
 
 // Read brake actuator position
-float read_brake_position(void);
+float read_brake_actuator_position(void);
 
 //------- Emergency Brake --------//
 
