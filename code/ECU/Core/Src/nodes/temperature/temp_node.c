@@ -17,11 +17,11 @@
 // Initialize the nodes
 void temp_node_init(void) {
     // Create node
-    rclc_node_init_default(&temp_node, "temp_node", "", &support);
+    rclc_node_init_default(&temp_node, TEMP_NODE_NAME, "", &support);
 
     // Create publishers
-    rclc_publisher_init_default(&temp_1_pub, &temp_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), "temp_1");
-    rclc_publisher_init_default(&temp_2_pub, &temp_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), "temp_2");
+    rclc_publisher_init_default(&temp_1_pub, &temp_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), TEMP_1_TOPIC);
+    rclc_publisher_init_default(&temp_2_pub, &temp_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), TEMP_2_TOPIC);
 
     // Create timers
     rclc_timer_init_default(&temp_timer, &support, RCL_MS_TO_NS(TEMP_NODE_UPDATE_FREQ), temp_callback);

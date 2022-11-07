@@ -21,6 +21,16 @@
 // Includes
 #include "control_common.h"
 
+// Node Settings
+#define BRAKE_NODE_NAME "brake_node"
+#define EMERGEBCY_BRAKE_TOPIC "emergency_brake"
+#define BRAKE_ACTUATOR_L_TOPIC "brake_l_pressure"
+#define BRAKE_ACTUATOR_R_TOPIC "brake_r_pressure"
+#define BRAKE_PEDAL_PRESSED_TOPIC "brake_pedal_pressed"
+#define BRAKE_PEDAL_POSITION_TOPIC "brake_pedal_position"
+#define BRAKE_ACTUATOR_ACTIVE_TOPIC "brake_actuator_active"
+#define BRAKE_ACTUATOR_POSITION_TOPIC "brake_actuator_position"
+
 // Brake Light Relay
 #define BRAKE_LIGHT_RELAY_PORT AUX_RELAY_3_GPIO_Port
 #define BRAKE_LIGHT_RELAY_PIN AUX_RELAY_3_Pin
@@ -54,6 +64,7 @@ rcl_timer_t brake_timer;
 rcl_publisher_t brake_pedal_pressed_pub;
 rcl_publisher_t brake_pedal_position_pub;
 
+rcl_publisher_t brake_actuator_active_pub;
 rcl_publisher_t brake_act_position_pub;
 
 // Subscriber handle
@@ -79,6 +90,9 @@ bool is_brake_pressed(void);
 // Read brake pedal position
 float read_brake_pedal_position(void);
 
+// Brake detect led
+void brake_detect_led(bool state);
+
 //------- Brake Actuator -------//
 
 // Brake Motor Control (Left PWM, Left Enable, Right PWM, Right Enable)
@@ -93,11 +107,13 @@ void brake_actuator_r_callback(const void * msgin);
 // Read brake actuator position
 float read_brake_actuator_position(void);
 
+// Send brake actuator active
+void send_brake_actuator_active(bool state);
+
 //------- Emergency Brake --------//
 
 // Adjust depending on wiring
-#define BRAKE_L_FORWARD
-//#define BRAKE_L_REVERSE
+#define BRAKE_INVERTED
 
 // Emergency Brake Callback
 void emergency_brake_callback(const void * msgin);

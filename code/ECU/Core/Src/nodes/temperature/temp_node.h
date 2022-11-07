@@ -21,6 +21,11 @@
 // MAX6675 Driver
 #include "max6675.h"
 
+// Node Properties
+#define TEMP_NODE_NAME "temp_node"
+#define TEMP_1_TOPIC "temp_1"
+#define TEMP_2_TOPIC "temp_2"
+
 // Executor Handle
 rclc_executor_t temp_executor;
 

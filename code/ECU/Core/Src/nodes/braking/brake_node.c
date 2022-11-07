@@ -15,20 +15,21 @@
 // Inirialize the brake node
 void brake_node_init(void) {
     // Init the node
-    rclc_node_init_default(&brake_node, "brake_node", "", &support);
+    rclc_node_init_default(&brake_node, BRAKE_NODE_NAME, "", &support);
 
     // Messages
     std_msgs__msg__Bool emergency_msg;
 
     // Create subscribers
-    rclc_subscription_init_default(&emergency_brake_sub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Bool), "emergency_brake");
-    rclc_subscription_init_default(&brake_actuator_l_sub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), "brake_l_pressure");
-    rclc_subscription_init_default(&brake_actuator_r_sub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), "brake_r_pressure");
+    rclc_subscription_init_default(&emergency_brake_sub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Bool), EMERGEBCY_BRAKE_TOPIC);
+    rclc_subscription_init_default(&brake_actuator_l_sub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), BRAKE_ACTUATOR_L_TOPIC);
+    rclc_subscription_init_default(&brake_actuator_r_sub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), BRAKE_ACTUATOR_R_TOPIC);
 
     // Create publishers
-    rclc_publisher_init_default(&brake_pedal_pressed_pub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Bool), "brake_pedal_pressed");
-    rclc_publisher_init_default(&brake_pedal_position_pub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), "brake_pedal_position");
-    rclc_publisher_init_default(&brake_act_position_pub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), "brake_act_position");
+    rclc_publisher_init_default(&brake_pedal_pressed_pub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Bool), BRAKE_PEDAL_PRESSED_TOPIC);
+    rclc_publisher_init_default(&brake_pedal_position_pub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), BRAKE_PEDAL_POSITION_TOPIC);
+    rclc_publisher_init_default(&brake_actuator_active_pub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Bool), BRAKE_ACTUATOR_ACTIVE_TOPIC);
+    rclc_publisher_init_default(&brake_act_position_pub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), BRAKE_ACTUATOR_POSITION_TOPIC);
 
     // Create timers
     rclc_timer_init_default(&brake_timer, &support, RCL_MS_TO_NS(10), brake_timer_callback);
@@ -82,9 +83,15 @@ void brake_node_spin(void) {
 bool is_brake_pressed(void) {
     // Check if the brake pedal is pressed
     if (read_brake_pedal_position() > BRAKE_PEDAL_THRESHOLD) {
+        // Activate the brake detect LED
+        brake_detect_led(true);
+
         return true;
 
     } else {
+        // Deactivate the brake detect LED
+        brake_detect_led(false);
+
         return false;
 
     }
@@ -104,6 +111,21 @@ float read_brake_pedal_position(void) {
 
 }
 
+// Brake detect led
+void brake_detect_led(bool state) {
+    // Check if the brake pedal is pressed
+    if (state) {
+        // Turn on the brake detect led
+        HAL_GPIO_WritePin(Brake_Detect_LED_GPIO_Port, Brake_Detect_LED_Pin, GPIO_PIN_SET);
+
+    } else {
+        // Turn off the brake detect led
+        HAL_GPIO_WritePin(Brake_Detect_LED_GPIO_Port, Brake_Detect_LED_Pin, GPIO_PIN_RESET);
+
+    }
+
+}
+
 // Brake motor control
 void brake_motor_control(float left_pwm, bool left_enable, float right_pwm, bool right_enable) {
     // The brake motor uses the htim3 timer
@@ -116,6 +138,14 @@ void brake_motor_control(float left_pwm, bool left_enable, float right_pwm, bool
         __HAL_TIM_SET_COMPARE(BRAKE_ACTUATOR_MOTOR_CONTROLLER_TIMER, BRAKE_ACTUATOR_MOTOR_CONTROLLER_L, left_pwm);
         // Enable the motor
         HAL_GPIO_WritePin(Brake_L_EN_GPIO_Port, Brake_L_EN_Pin, GPIO_PIN_SET);
+
+        #ifdef BRAKE_INVERTED
+            // Send the brake actuator active message
+            send_brake_actuator_active(true);
+        #else
+            // Send the brake actuator active message
+            send_brake_actuator_active(false);
+        #endif
 
     } else {
         // Disable the motor
@@ -130,11 +160,20 @@ void brake_motor_control(float left_pwm, bool left_enable, float right_pwm, bool
         // Enable the motor
         HAL_GPIO_WritePin(Brake_R_EN_GPIO_Port, Brake_R_EN_Pin, GPIO_PIN_SET);
 
+        #ifdef BRAKE_INVERTED
+            // Send the brake actuator active message
+            send_brake_actuator_active(false);
+        #else
+            // Send the brake actuator active message
+            send_brake_actuator_active(true);
+        #endif
+
     } else {
         // Disable the motor
         HAL_GPIO_WritePin(Brake_R_EN_GPIO_Port, Brake_R_EN_Pin, GPIO_PIN_RESET);
 
     }
+
 }
 
 // Brake actuator left callback
@@ -187,10 +226,21 @@ void emergency_brake_callback(const void * msgin) {
     const std_msgs__msg__Bool * msg = (const std_msgs__msg__Bool *)msgin;
 
     // Set the emergency brake
-    #ifdef BRAKE_L_FORWARD
+    #ifdef BRAKE_INVERTED
         brake_motor_control(255, true, 0, false);
     #else
         brake_motor_control(0, false, 255, true);
     #endif
+
+}
+
+// Send brake actuator active message
+void send_brake_actuator_active_message(bool state) {
+    // Set the brake actuator active message
+    std_msgs__msg__Bool brake_actuator_active_msg;
+    brake_actuator_active_msg.data = state;
+
+    // Publish the brake actuator active message
+    rclc_publish(&brake_actuator_active_pub, (const void*)&brake_actuator_active_msg);
 
 }
