@@ -50,16 +50,20 @@ void brake_node_init(void) {
 }
 
 // Brake timer callback
-void brake_timer_callback(void) {
+void brake_timer_callback(rcl_timer_t * timer, int64_t last_call_time) {
     // Create messages
     std_msgs__msg__Bool brake_pedal_pressed_msg;
     std_msgs__msg__Float32 brake_pedal_position_msg;
     std_msgs__msg__Float32 brake_act_position_msg;
+    std_msgs__msg__Bool brake_actuator_active_msg;
     // Get the brake actuator position
     brake_act_position_msg.data = get_brake_actuator_position();
 
+    // Check if the brake actuator is active
+    brake_actuator_active_msg.data = brake_actuator_active();
+
     // Check if the brake pedal is pressed
-    if (is_brake_pressed()) {
+    if (brake_is_pressed()) {
         brake_pedal_pressed_msg.data = true;
         brake_pedal_position_msg.data = get_brake_pedal_position();
 
@@ -73,6 +77,7 @@ void brake_timer_callback(void) {
     rclc_publish(&brake_pedal_pressed_pub, (const void*)&brake_pedal_pressed_msg);
     rclc_publish(&brake_pedal_position_pub, (const void*)&brake_pedal_position_msg);
     rclc_publish(&brake_act_position_pub, (const void*)&brake_act_position_msg);
+    rclc_publish(&brake_actuator_active_pub, (const void*)&brake_actuator_active_msg);
 
 }
 
@@ -82,7 +87,7 @@ void brake_node_spin(void) {
 }
 
 // Is brake pressed
-bool is_brake_pressed(void) {
+bool brake_is_pressed(void) {
     // Check if the brake pedal is pressed
     if (read_brake_pedal_position() > BRAKE_PEDAL_THRESHOLD) {
         // Activate the brake detect LED
@@ -209,7 +214,7 @@ void brake_actuator_r_callback(const void * msgin) {
 }
 
 // Read brake actuator position
-float read_brake_actuator_position(void) {
+float brake_get_actuator_pos(void) {
     // Read the brake actuator position from the correct ADC channel
     SELECT_BRAKE_ACTUATOR_CHANNEL();
     HAL_ADC_Start(BRAKE_ACTUATOR_ADC);
@@ -233,6 +238,14 @@ void emergency_brake_callback(const void * msgin) {
     #else
         brake_motor_control(0, false, 255, true);
     #endif
+
+}
+
+// Is brake actuator active
+bool brake_actuator_is_active(void) {
+    // Check if the brake actuator is active
+    return HAL_GPIO_ReadPin(Brake_L_EN_GPIO_Port, Brake_L_EN_Pin) == GPIO_PIN_SET || 
+            HAL_GPIO_ReadPin(Brake_R_EN_GPIO_Port, Brake_R_EN_Pin) == GPIO_PIN_SET;
 
 }
 

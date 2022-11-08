@@ -1,6 +1,6 @@
 /**
  * @file accessory_node.c
- * @author your name (you@domain.com)
+ * @author Joseph Telaak
  * @brief Controls the lights and other accessories
  * @version 0.1
  * @date 2022-11-08

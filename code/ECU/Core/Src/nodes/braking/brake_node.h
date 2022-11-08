@@ -50,9 +50,9 @@
 #define SELECT_BRAKE_ACTUATOR_CHANNEL ADC2_SELECT_CH6
 
 // Motor Controller
-#define BRAKE_ACTUATOR_MOTOR_CONTROLLER_TIMER &htim3
+#define BRAKE_ACTUATOR_MOTOR_CONTROLLER_TIMER &htim2
 #define BRAKE_ACTUATOR_MOTOR_CONTROLLER_L TIM_CHANNEL_4
-#define BRAKE_ACTUATOR_MOTOR_CONTROLLER_R TIM_CHANNEL_3
+#define BRAKE_ACTUATOR_MOTOR_CONTROLLER_R TIM_CHANNEL_1
 
 // Executor handle
 rclc_executor_t brake_executor;
@@ -80,7 +80,7 @@ rcl_subscription_t emergency_brake_sub;
 void brake_node_init();
 
 // Timer callback
-void brake_timer_callback();
+void brake_timer_callback(rcl_timer_t * timer, int64_t last_call_time);
 
 // Spin function
 void brake_spin();
@@ -88,7 +88,7 @@ void brake_spin();
 //------- Brake Pedal -------//
 
 // Is Brake Pressed
-bool is_brake_pressed(void);
+bool brake_is_pressed(void);
 
 // Read brake pedal position
 float read_brake_pedal_position(void);
@@ -108,7 +108,10 @@ void brake_actuator_l_callback(const void * msgin);
 void brake_actuator_r_callback(const void * msgin);
 
 // Read brake actuator position
-float read_brake_actuator_position(void);
+float brake_get_actuator_pos(void);
+
+// Is brake actuator active
+bool brake_actuator_is_active(void);
 
 // Send brake actuator active
 void send_brake_actuator_active(bool state);
