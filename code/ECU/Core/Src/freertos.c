@@ -25,6 +25,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+// Include node headers
+#include "nodes/acceleration/accel_node.h"
+#include "nodes/accessories/accessory_node.h"
+#include "nodes/braking/brake_node.h"
+#include "nodes/gyro/gyro_node.h"
+#include "nodes/steering/steer_node.h"
+#include "nodes/temperature/temp_node.h"
 
 /* USER CODE END Includes */
 
@@ -144,39 +151,66 @@ void StartDefaultTask(void *argument)
 
   // micro-ROS app
 
-  rcl_publisher_t publisher;
-  std_msgs__msg__Int32 msg;
-  rclc_support_t support;
-  rcl_allocator_t allocator;
-  rcl_node_t node;
+  // rcl_publisher_t publisher;
+  // std_msgs__msg__Int32 msg;
+  // rclc_support_t support;
+  // rcl_allocator_t allocator;
+  // rcl_node_t node;
 
+  // allocator = rcl_get_default_allocator();
+
+  // //create init_options
+  // rclc_support_init(&support, 0, NULL, &allocator);
+
+  // // create node
+  // rclc_node_init_default(&node, "cubemx_node", "", &support);
+
+  // // create publisher
+  // rclc_publisher_init_default(
+  //   &publisher,
+  //   &node,
+  //   ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+  //   "cubemx_publisher");
+
+  // msg.data = 0;
+
+  // for(;;)
+  // {
+  //   rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
+  //   if (ret != RCL_RET_OK)
+  //   {
+  //     printf("Error publishing (line %d)\n", __LINE__); 
+  //   }
+    
+  //   msg.data++;
+  //   osDelay(10);
+  // }
+
+  // ROS App
+
+  // Init allocator
   allocator = rcl_get_default_allocator();
 
-  //create init_options
+  // Init support
   rclc_support_init(&support, 0, NULL, &allocator);
 
-  // create node
-  rclc_node_init_default(&node, "cubemx_node", "", &support);
+  // Init all nodes from headers
+  init_accel_node();
+  init_accessory_node();
+  init_brake_node();
+  init_gyro_node();
+  init_steer_node();
+  init_temp_node();
 
-  // create publisher
-  rclc_publisher_init_default(
-    &publisher,
-    &node,
-    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
-    "cubemx_publisher");
-
-  msg.data = 0;
-
+  // Spin all nodes
   for(;;)
   {
-    rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
-    if (ret != RCL_RET_OK)
-    {
-      printf("Error publishing (line %d)\n", __LINE__); 
-    }
-    
-    msg.data++;
-    osDelay(10);
+    rcl_spin_node(&accel_node);
+    rcl_spin_node(&accessory_node);
+    rcl_spin_node(&brake_node);
+    rcl_spin_node(&gyro_node);
+    rcl_spin_node(&steer_node);
+    rcl_spin_node(&temp_node);
   }
   
   /* USER CODE END StartDefaultTask */
