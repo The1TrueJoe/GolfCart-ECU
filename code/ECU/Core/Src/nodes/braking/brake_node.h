@@ -31,6 +31,9 @@
 #define BRAKE_ACTUATOR_ACTIVE_TOPIC "brake_actuator_active"
 #define BRAKE_ACTUATOR_POSITION_TOPIC "brake_actuator_position"
 
+// Update frequency
+#define BRAKE_UPDATE_FREQUENCY 10
+
 // Brake Light Relay
 #define BRAKE_LIGHT_RELAY_PORT AUX_RELAY_3_GPIO_Port
 #define BRAKE_LIGHT_RELAY_PIN AUX_RELAY_3_Pin

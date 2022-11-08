@@ -14,7 +14,6 @@
 
 // Init function
 void sensors_init(void) {
-    allocator = rcl_get_default_allocator();
-    rclc_support_init(&support, 0, NULL, &allocator);
+    
 
 }

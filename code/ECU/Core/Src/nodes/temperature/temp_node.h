@@ -16,7 +16,7 @@
 #define TEMP_NODE_H
 
 // Sensor thread
-#include "sensors_common.h"
+#include "control_common.h"
 
 // MAX6675 Driver
 #include "max6675.h"
@@ -25,6 +25,9 @@
 #define TEMP_NODE_NAME "temp_node"
 #define TEMP_1_TOPIC "temp_1"
 #define TEMP_2_TOPIC "temp_2"
+
+// Update frequency
+#define TEMP_NODE_UPDATE_FREQ 1000
 
 // Executor Handle
 rclc_executor_t temp_executor;

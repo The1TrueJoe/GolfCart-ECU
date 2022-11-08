@@ -31,11 +31,6 @@
 #include "std_msgs/msg/bool.h"
 #include "std_msgs/msg/float32.h"
 
-// Update frequency
-#define GYRO_NODE_UPDATE_FREQ 100
-#define TEMP_NODE_UPDATE_FREQ 1000
-#define BRAKE_NODE_UPDATE_FREQ 10
-
 // Support Handle
 rclc_support_t support;
 

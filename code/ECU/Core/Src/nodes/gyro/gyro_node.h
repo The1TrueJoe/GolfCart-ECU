@@ -17,7 +17,7 @@
 #define GYRO_NODE_H
 
 // Sensor thread common
-#include "sensor_common.h"
+#include "control_common.h"
 
 // MPU6050 Driver
 #include "mpu6050.h"
@@ -39,6 +39,9 @@ rcl_publisher_t gyro_gx_publisher;
 rcl_publisher_t gyro_gy_publisher;
 rcl_publisher_t gyro_gz_publisher;
 rcl_publisher_t gyro_temp_publisher;
+
+// Update frequency
+#define GYRO_NODE_UPDATE_FREQ 100
 
 // Initialize the gyro node
 void gyro_node_init(void);

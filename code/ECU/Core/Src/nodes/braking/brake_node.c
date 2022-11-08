@@ -19,6 +19,8 @@ void brake_node_init(void) {
 
     // Messages
     std_msgs__msg__Bool emergency_msg;
+    std_msgs__msg__Float32 brake_actuator_l_msg;
+    std_msgs__msg__Float32 brake_actuator_r_msg;
 
     // Create subscribers
     rclc_subscription_init_default(&emergency_brake_sub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Bool), EMERGEBCY_BRAKE_TOPIC);
@@ -32,15 +34,15 @@ void brake_node_init(void) {
     rclc_publisher_init_default(&brake_act_position_pub, &brake_node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), BRAKE_ACTUATOR_POSITION_TOPIC);
 
     // Create timers
-    rclc_timer_init_default(&brake_timer, &support, RCL_MS_TO_NS(10), brake_timer_callback);
+    rclc_timer_init_default(&brake_timer, &support, RCL_MS_TO_NS(BRAKE_UPDATE_FREQUENCY), brake_timer_callback);
 
     // Initialize executor
     rclc_executor_init(&brake_executor, &support.context, 5, &support.allocator);
 
     // Add subscriptions to executor
     rclc_executor_add_subscription(&brake_executor, &emergency_brake_sub, &emergency_msg, &emergency_brake_callback, ON_NEW_DATA);
-    rclc_executor_add_subscription(&brake_executor, &brake_actuator_l_sub, &emergency_msg, &brake_actuator_l_callback, ON_NEW_DATA);
-    rclc_executor_add_subscription(&brake_executor, &brake_actuator_r_sub, &emergency_msg, &brake_actuator_r_callback, ON_NEW_DATA);
+    rclc_executor_add_subscription(&brake_executor, &brake_actuator_l_sub, &brake_actuator_l_msg, &brake_actuator_l_callback, ON_NEW_DATA);
+    rclc_executor_add_subscription(&brake_executor, &brake_actuator_r_sub, &brake_actuator_r_msg, &brake_actuator_r_callback, ON_NEW_DATA);
 
     // Add timers to executor
     rclc_executor_add_timer(&brake_executor, &brake_timer);
