@@ -1,5 +1,0 @@
-1679542472833	Delete resource 'ECU'
-1679542479535	Delete 4 resources
-1679669748545	Delete resource 'ECU-UART'
-1679672484290	Delete resource 'ECU-UART/Core/Startup/startup_stm32h723zgtx 2.s'
-1679672526278	Delete resource 'ECU-UART/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim 3.c'
