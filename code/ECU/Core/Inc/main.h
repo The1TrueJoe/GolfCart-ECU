@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -31,8 +31,6 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdint.h>
-#include <stdbool.h>
 
 /* USER CODE END Includes */
 
@@ -75,16 +73,6 @@ void Error_Handler(void);
 #define MPU_SDA_GPIO_Port GPIOF
 #define MPU_SCL_Pin GPIO_PIN_1
 #define MPU_SCL_GPIO_Port GPIOF
-#define TEMP_1_CS_Pin GPIO_PIN_6
-#define TEMP_1_CS_GPIO_Port GPIOF
-#define TEMP_SCK_Pin GPIO_PIN_7
-#define TEMP_SCK_GPIO_Port GPIOF
-#define TEMP_SO_Pin GPIO_PIN_8
-#define TEMP_SO_GPIO_Port GPIOF
-#define TEMP_2_CS_Pin GPIO_PIN_9
-#define TEMP_2_CS_GPIO_Port GPIOF
-#define Steering_Pot_Pin GPIO_PIN_3
-#define Steering_Pot_GPIO_Port GPIOC
 #define Steering_L_PWM_Pin GPIO_PIN_3
 #define Steering_L_PWM_GPIO_Port GPIOA
 #define Steering_L_EN_Pin GPIO_PIN_4
@@ -95,24 +83,12 @@ void Error_Handler(void);
 #define Steering_R_EN_GPIO_Port GPIOA
 #define Brake_R_PWM_Pin GPIO_PIN_0
 #define Brake_R_PWM_GPIO_Port GPIOB
-#define Break_L_PWM_Pin GPIO_PIN_1
-#define Break_L_PWM_GPIO_Port GPIOB
+#define Brake_L_PWM_Pin GPIO_PIN_1
+#define Brake_L_PWM_GPIO_Port GPIOB
 #define Brake_R_EN_Pin GPIO_PIN_2
 #define Brake_R_EN_GPIO_Port GPIOB
-#define Accelerator_SW_Pin GPIO_PIN_11
-#define Accelerator_SW_GPIO_Port GPIOF
-#define Accelerator_IN_Pin GPIO_PIN_12
-#define Accelerator_IN_GPIO_Port GPIOF
-#define Brake_IN_Pin GPIO_PIN_13
-#define Brake_IN_GPIO_Port GPIOF
-#define Brake_Pot_Pin GPIO_PIN_14
-#define Brake_Pot_GPIO_Port GPIOF
 #define Brake_L_EN_Pin GPIO_PIN_15
 #define Brake_L_EN_GPIO_Port GPIOF
-#define GPS_RX_Pin GPIO_PIN_0
-#define GPS_RX_GPIO_Port GPIOG
-#define GPS_TX_Pin GPIO_PIN_1
-#define GPS_TX_GPIO_Port GPIOG
 #define Steering_ENC_1_Pin GPIO_PIN_7
 #define Steering_ENC_1_GPIO_Port GPIOE
 #define Steering_ENC_2_Pin GPIO_PIN_8
@@ -131,40 +107,15 @@ void Error_Handler(void);
 #define Accelerator_Detect_LED_GPIO_Port GPIOE
 #define Brake_Detect_LED_Pin GPIO_PIN_10
 #define Brake_Detect_LED_GPIO_Port GPIOB
-#define RS232_2_TX_Pin GPIO_PIN_14
-#define RS232_2_TX_GPIO_Port GPIOB
-#define RS232_2_RX_Pin GPIO_PIN_15
-#define RS232_2_RX_GPIO_Port GPIOB
-#define RS232_1_TX_Pin GPIO_PIN_8
-#define RS232_1_TX_GPIO_Port GPIOD
-#define RS232_1_RX_Pin GPIO_PIN_9
-#define RS232_1_RX_GPIO_Port GPIOD
-#define Steer_L_EN2_Pin GPIO_PIN_10
-#define Steer_L_EN2_GPIO_Port GPIOD
-#define Steer_R_EN2_Pin GPIO_PIN_11
-#define Steer_R_EN2_GPIO_Port GPIOD
-#define Steer_L_PWM2_Pin GPIO_PIN_12
-#define Steer_L_PWM2_GPIO_Port GPIOD
-#define Steer_R_PWM2_Pin GPIO_PIN_13
-#define Steer_R_PWM2_GPIO_Port GPIOD
-#define DEBUG_U_TX_Pin GPIO_PIN_6
-#define DEBUG_U_TX_GPIO_Port GPIOC
-#define DEBUG_U_RX_Pin GPIO_PIN_7
-#define DEBUG_U_RX_GPIO_Port GPIOC
-#define CAN_1_RX_Pin GPIO_PIN_0
-#define CAN_1_RX_GPIO_Port GPIOD
-#define CAN_1_TX_Pin GPIO_PIN_1
-#define CAN_1_TX_GPIO_Port GPIOD
-#define CAN_2_TX_Pin GPIO_PIN_9
-#define CAN_2_TX_GPIO_Port GPIOG
-#define CAN_2_RX_Pin GPIO_PIN_10
-#define CAN_2_RX_GPIO_Port GPIOG
-#define SPI6_CS_Pin GPIO_PIN_11
-#define SPI6_CS_GPIO_Port GPIOG
-#define CAN_3_RX_Pin GPIO_PIN_5
-#define CAN_3_RX_GPIO_Port GPIOB
-#define CAN_3_TX_Pin GPIO_PIN_6
-#define CAN_3_TX_GPIO_Port GPIOB
+#define Steering_L_EN2_Pin GPIO_PIN_10
+#define Steering_L_EN2_GPIO_Port GPIOD
+#define Steering_R_EN2_Pin GPIO_PIN_11
+#define Steering_R_EN2_GPIO_Port GPIOD
+#define Steering_L_PWM2_Pin GPIO_PIN_12
+#define Steering_L_PWM2_GPIO_Port GPIOD
+#define Steering_R_PWM2_Pin GPIO_PIN_13
+#define Steering_R_PWM2_GPIO_Port GPIOD
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

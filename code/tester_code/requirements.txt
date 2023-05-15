@@ -1,0 +1,4 @@
+pyserial==3.3
+pyfiglet
+inputs
+keyboard

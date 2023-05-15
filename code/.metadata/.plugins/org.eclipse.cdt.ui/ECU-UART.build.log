@@ -1,0 +1,56 @@
+17:17:25 **** Incremental Build of configuration Debug for project ECU-UART ****
+make -j11 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx -c -I../Core/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'increment_speed':
+../Core/Src/main.c:82:28: warning: passing argument 2 of 'HAL_SPI_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   82 |   HAL_SPI_Transmit(&hspi4, 0x01, 1, 100);
+      |                            ^~~~
+      |                            |
+      |                            int
+In file included from ../Core/Inc/stm32h7xx_hal_conf.h:447,
+                 from ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h:863:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  863 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                             ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'decrement_speed':
+../Core/Src/main.c:92:28: warning: passing argument 2 of 'HAL_SPI_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   92 |   HAL_SPI_Transmit(&hspi4, 0x02, 1, 100);
+      |                            ^~~~
+      |                            |
+      |                            int
+In file included from ../Core/Inc/stm32h7xx_hal_conf.h:447,
+                 from ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h:863:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  863 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                             ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'set_speed':
+../Core/Src/main.c:104:28: warning: passing argument 2 of 'HAL_SPI_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  104 |   HAL_SPI_Transmit(&hspi4, speed, 1, 100);
+      |                            ^~~~~
+      |                            |
+      |                            uint8_t {aka unsigned char}
+In file included from ../Core/Inc/stm32h7xx_hal_conf.h:447,
+                 from ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h:863:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  863 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                             ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "ECU-UART.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/joeytelaak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Projects/AutoCart Rev2/Drive Computer/Components/GolfCart-ECU/code/ECU-UART/STM32H723ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ECU-UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ECU-UART.elf
+ 
+arm-none-eabi-size   ECU-UART.elf 
+arm-none-eabi-objdump -h -S  ECU-UART.elf  > "ECU-UART.list"
+   text	   data	    bss	    dec	    hex	filename
+  44708	     24	   2728	  47460	   b964	ECU-UART.elf
+Finished building: default.size.stdout
+ 
+Finished building: ECU-UART.list
+ 
+
+17:17:26 Build Finished. 0 errors, 3 warnings. (took 1s.19ms)
+

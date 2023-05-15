@@ -1,0 +1,66 @@
+2023-03-25 15:20:33,309 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] Exception in thread "AWT-EventQueue-0" java.util.ConcurrentModificationException
+2023-03-25 15:20:33,327 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.util.LinkedHashMap$LinkedHashIterator.nextNode(LinkedHashMap.java:719)
+2023-03-25 15:20:33,327 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.util.LinkedHashMap$LinkedKeyIterator.next(LinkedHashMap.java:741)
+2023-03-25 15:20:33,327 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.microxplorer.mcu.IP.getParameterValue(IP.java:3201)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.microxplorer.mcu.IP.getParameterValue(IP.java:3153)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.model.clocktree.TLabel.isEnabled(TLabel.java:207)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.model.ClockTree.updateLabelsState(ClockTree.java:388)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.model.ClockTree.updateElementsState(ClockTree.java:368)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.gui.MultiplexerUI.propertyChange(MultiplexerUI.java:384)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.beans.PropertyChangeSupport.fire(PropertyChangeSupport.java:341)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:333)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:266)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.model.clocktree.Multiplexer.setSelectedInput(Multiplexer.java:89)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.gui.MultiplexerUI.actionPerformed(MultiplexerUI.java:495)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1967)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2308)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.JToggleButton$ToggleButtonModel.setPressed(JToggleButton.java:401)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.components.swing.JXTransformer$MagicGlassPane.dispatchMouseEvent(JXTransformer.java:339)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.components.swing.JXTransformer$MagicGlassPane.processMouseEvent(JXTransformer.java:320)
+2023-03-25 15:20:33,328 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.processEvent(Component.java:6400)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Container.processEvent(Container.java:2263)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5011)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2321)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4843)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4918)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4547)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4488)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2307)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4843)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:772)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.AccessController.doPrivileged(Native Method)
+2023-03-25 15:20:33,329 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:95)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:743)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.AccessController.doPrivileged(Native Method)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+2023-03-25 15:20:33,330 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2023-03-25 17:13:12,007 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:13:12,024 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:13:12,025 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:16:27,533 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:16:27,560 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:16:27,560 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:16:28,776 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:16:28,777 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:16:28,777 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:17:28,340 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:17:28,346 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:17:28,346 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:17:30,125 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:17:30,125 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 17:17:30,126 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 18:53:52,723 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 18:53:52,728 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2023-03-25 18:53:52,729 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com

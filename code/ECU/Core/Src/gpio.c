@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -38,8 +38,6 @@
         * Output
         * EVENT_OUT
         * EXTI
-     PA9   ------> USB_OTG_HS_VBUS
-     PA10   ------> USB_OTG_HS_ID
 */
 void MX_GPIO_Init(void)
 {
@@ -50,22 +48,20 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOG_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, AUX_RELAY_1_Pin|AUX_RELAY_2_Pin|AUX_RELAY_3_Pin|AUX_RELAY_4_Pin
-                          |AUX_RELAY_5_Pin|Enable_Pin|Direction_Pin|Speed_CS_Pin
-                          |Accelerator_Detect_LED_Pin, GPIO_PIN_RESET);
+                          |AUX_RELAY_5_Pin|Steering_ENC_1_Pin|Steering_ENC_2_Pin|Enable_Pin
+                          |Direction_Pin|Speed_CS_Pin|Accelerator_Detect_LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(AUX_RELAY_6_GPIO_Port, AUX_RELAY_6_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOF, TEMP_1_CS_Pin|TEMP_2_CS_Pin|Brake_L_EN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOF, MPU_SDA_Pin|MPU_SCL_Pin|Brake_L_EN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, Steering_L_EN_Pin|Steering_R_EN_Pin, GPIO_PIN_RESET);
@@ -74,17 +70,14 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOB, Brake_R_EN_Pin|Brake_Detect_LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, Steer_L_EN2_Pin|Steer_R_EN2_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(SPI6_CS_GPIO_Port, SPI6_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, Steering_L_EN2_Pin|Steering_R_EN2_Pin|Steering_L_PWM2_Pin|Steering_R_PWM2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PEPin PEPin PEPin PEPin
                            PEPin PEPin PEPin PEPin
-                           PEPin */
+                           PEPin PEPin PEPin */
   GPIO_InitStruct.Pin = AUX_RELAY_1_Pin|AUX_RELAY_2_Pin|AUX_RELAY_3_Pin|AUX_RELAY_4_Pin
-                          |AUX_RELAY_5_Pin|Enable_Pin|Direction_Pin|Speed_CS_Pin
-                          |Accelerator_Detect_LED_Pin;
+                          |AUX_RELAY_5_Pin|Steering_ENC_1_Pin|Steering_ENC_2_Pin|Enable_Pin
+                          |Direction_Pin|Speed_CS_Pin|Accelerator_Detect_LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -98,7 +91,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(AUX_RELAY_6_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PFPin PFPin PFPin */
-  GPIO_InitStruct.Pin = TEMP_1_CS_Pin|TEMP_2_CS_Pin|Brake_L_EN_Pin;
+  GPIO_InitStruct.Pin = MPU_SDA_Pin|MPU_SCL_Pin|Brake_L_EN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -118,39 +111,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PEPin PEPin */
-  GPIO_InitStruct.Pin = Steering_ENC_1_Pin|Steering_ENC_2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PDPin PDPin */
-  GPIO_InitStruct.Pin = Steer_L_EN2_Pin|Steer_R_EN2_Pin;
+  /*Configure GPIO pins : PDPin PDPin PDPin PDPin */
+  GPIO_InitStruct.Pin = Steering_L_EN2_Pin|Steering_R_EN2_Pin|Steering_L_PWM2_Pin|Steering_R_PWM2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PA9 */
-  GPIO_InitStruct.Pin = GPIO_PIN_9;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PA10 */
-  GPIO_InitStruct.Pin = GPIO_PIN_10;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF10_OTG1_HS;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = SPI6_CS_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(SPI6_CS_GPIO_Port, &GPIO_InitStruct);
 
 }
 

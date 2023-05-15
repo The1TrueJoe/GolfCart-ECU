@@ -36,3 +36,6 @@
 
 # Editors
 *.vscode
+
+# Test
+test/
