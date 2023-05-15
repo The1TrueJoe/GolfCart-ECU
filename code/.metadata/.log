@@ -902,3 +902,42 @@ java.lang.Exception
 
 !ENTRY org.eclipse.cdt.core 1 0 2023-05-15 18:25:57.705
 !MESSAGE Indexed 'ECU' (34 sources, 96 headers) in 6.01 sec: 10,184 declarations; 86,874 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0021%)
+
+!ENTRY org.eclipse.core.resources 2 2 2023-05-15 18:30:21.970
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2023-05-15 18:30:21.971
+!MESSAGE The project description file (.project) for 'ECU-UART' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+
+!ENTRY com.st.stm32cube.ide.mcu.buildanalyzer.ui 1 0 2023-05-15 18:30:22.686
+!MESSAGE Failed to parse map file
+!STACK 0
+java.io.FileNotFoundException: /Users/joeytelaak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Projects/AutoCart Rev2/Drive Computer/Components/GolfCart-ECU/code/ECU-UART/Debug/ECU-UART.map (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at java.base/java.io.FileReader.<init>(FileReader.java:60)
+	at elf_analyzer.datamodel.BuildDataProviderMap.readFile(BuildDataProviderMap.java:55)
+	at elf_analyzer.datamodel.BuildDataProviderMap.compute(BuildDataProviderMap.java:358)
+	at elf_analyzer.datamodel.BuildDataProviderMap.computeMemConfig(BuildDataProviderMap.java:402)
+	at elf_analyzer.datamodel.BuildData.compute(BuildData.java:81)
+	at elf_analyzer.ElfAnalyzerView.inputChanged(ElfAnalyzerView.java:265)
+	at elf_analyzer.ElfAnalyzerView.lambda$7(ElfAnalyzerView.java:506)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+!ENTRY com.st.stm32cube.ide.mcu.buildanalyzer.ui 1 0 2023-05-15 18:30:23.884
+!MESSAGE Failed to parse map file
+!STACK 0
+java.io.FileNotFoundException: /Users/joeytelaak/Library/Mobile Documents/com~apple~CloudDocs/Documents/Projects/AutoCart Rev2/Drive Computer/Components/GolfCart-ECU/code/ECU-UART/Debug/ECU-UART.map (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at java.base/java.io.FileReader.<init>(FileReader.java:60)
+	at elf_analyzer.datamodel.BuildDataProviderMap.readFile(BuildDataProviderMap.java:55)
+	at elf_analyzer.datamodel.BuildDataProviderMap.compute(BuildDataProviderMap.java:358)
+	at elf_analyzer.datamodel.BuildDataProviderMap.computeLinkerSymbols(BuildDataProviderMap.java:410)
+	at elf_analyzer.datamodel.BuildData.compute(BuildData.java:104)
+	at elf_analyzer.ElfAnalyzerView.inputChanged(ElfAnalyzerView.java:265)
+	at elf_analyzer.ElfAnalyzerView.lambda$7(ElfAnalyzerView.java:506)
+	at java.base/java.lang.Thread.run(Thread.java:829)
